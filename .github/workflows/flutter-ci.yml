@@ -40,14 +40,6 @@ jobs:
 
     # Build apk.
     - run: flutter build apk --split-per-abi
-
-    # Publishing apks
-    - uses: actions/upload-artifact@v1
-      with:
-        # Name of the command/step.
-        name: release-apk
-        # Path to the release apk.
-        path: build/app/outputs/flutter-apk/*.apk
     
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
