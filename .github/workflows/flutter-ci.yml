@@ -75,5 +75,5 @@ jobs:
         name: release_${{ env.NOW }}
         prerelease: true
         # build/ios/iphoneos/app.ipa
-        artifacts: "build/app/outputs/apk/release/*.apk,build/web/wep-app.zip"
+        artifacts: "build/app/outputs/apk/release/*.apk,build/web/web-app.zip"
         token: ${{ secrets.TOKEN }}
