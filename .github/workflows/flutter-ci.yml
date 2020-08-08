@@ -40,19 +40,32 @@ jobs:
 
     # Build apk.
     - run: flutter build apk --split-per-abi
+    
+    # Build ios
+    # needs runs-on: macos-latest
+    # - name: Build iOS App
+    #   run: |
+    #     flutter build ios --no-codesign
+    #     cd build/ios/iphoneos
+    #     mkdir Payload
+    #     cd Payload
+    #     ln -s ../Runner.app
+    #     cd ..
+    #    zip -r app.ipa Payload
 
-     # Publishing apks
-    - uses: actions/upload-artifact@v1
-      with:
-        # Name of the command/step.
-        name: release-apk
-        # Path to the release apk.
-        path: build/app/outputs/apk/release/*.apk
-
+    # Build Web App
+    - name: Build Web App
+      run: |
+        flutter build Web
+        cd build/web
+        zip -r web-app.zip .
 
     - name: Create a Release APK
-      if: startsWith(github.ref, 'refs/tags/')
+      #if: startsWith(github.ref, 'refs/tags/')
       uses: ncipollo/release-action@v1
       with: 
-        artifacts: "build/app/outputs/apk/release/*.apk"
+        tag: ${{ env.APP_VERSION }}
+        name: ${{ env.APP_VERSION }}
+        # build/ios/iphoneos/app.ipa
+        artifacts: "build/app/outputs/apk/release/*.apk,build/web/wep-app.zip"
         token: ${{ secrets.TOKEN }}
