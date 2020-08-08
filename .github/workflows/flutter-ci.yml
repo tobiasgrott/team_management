@@ -29,6 +29,8 @@ jobs:
       with:
         channel: 'dev' # 'dev', 'alpha', default to: 'stable'
         # flutter-version: '1.12.x' # you can also specify exact version of flutter
+    # enable web
+    - run: flutter config --enable-web
     
     # Get flutter dependencies
     - run: flutter pub get
