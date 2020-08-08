@@ -16,7 +16,8 @@ jobs:
 
     # Set Release Version Number
     - name: Export Release Timestamp
-      run: echo "::set-env name=APP_VERSION::release_$(date + '%Y-%m-%d_%H-%m-%S')"
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
 
     # Setup Java environment in order to build the Android app
     - uses: actions/checkout@v1
@@ -70,8 +71,8 @@ jobs:
       #if: startsWith(github.ref, 'refs/tags/')
       uses: ncipollo/release-action@v1
       with: 
-        tag: ${{ env.APP_VERSION }}
-        name: ${{ env.APP_VERSION }}
+        tag: release_${{ steps.date.outputs.date }}
+        name: release_${{ steps.date.outputs.date }}
         # build/ios/iphoneos/app.ipa
         artifacts: "build/app/outputs/apk/release/*.apk,build/web/wep-app.zip"
         token: ${{ secrets.TOKEN }}
