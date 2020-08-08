@@ -13,7 +13,7 @@ jobs:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
-    
+
     # Set Release Version Number
     - name: Export Release Timestamp
       run: echo "::set-env name=APP_VERSION::release_$(date + '%Y-%m-%d_%H-%m-%S')"
@@ -60,7 +60,7 @@ jobs:
     # Build Web App
     - name: Build Web App
       run: |
-        flutter build Web
+        flutter build web
         cd build/web
         zip -r web-app.zip .
 
