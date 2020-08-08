@@ -39,11 +39,18 @@ jobs:
     - run: flutter test
 
     # Build apk.
-    - run: flutter build apk
+    - run: flutter build apk --split-per-abi
 
+    # Publishing apks
     - uses: actions/upload-artifact@v1
       with:
         # Name of the command/step.
         name: release-apk
         # Path to the release apk.
-        path: build/app/outputs/apk/release/app-release.apk
+        path: build/app/outputs/apk/release/*.apk
+    
+    - name: Create a Release APK
+      uses: ncipollo/release-action@v1
+      with: 
+        artifacts: "build/app/outputs/apk/release/*.apk"
+        token: ${{ secrets.TOKEN }}
