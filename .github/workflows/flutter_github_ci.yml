@@ -19,7 +19,7 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         channel: 'dev'
-    - run: pub get
+    - run: flutter pub get
     - run: flutter config --enable-web
     - run: flutter build web
     - name: Archive Production artifacts
@@ -67,7 +67,7 @@ jobs:
       uses: actions/upload-artifact@master
       with: 
         name: apk-build
-        path: build/app/outputs/apk/release
+        path: build/app/outputs/bundle/release
 
   deploy_web:
     name: Deploy Web to Firebase Hosting
