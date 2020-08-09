@@ -42,7 +42,8 @@ jobs:
     - run: flutter pub get
     - run: flutter clean
     - run: flutter build ios --release --no-codesign
-    - run: cd build/ios/iphoneos
+    - run: |
+          cd build/ios/iphoneos
           mkdir Payload
           cd Payload
           ln -s ../Runner.app
@@ -69,7 +70,7 @@ jobs:
 
     # Build Artifacts
     - run: flutter build apk
-    - run: flutter build apk --split-per-abi
+    #- run: flutter build apk --split-per-abi
     - run: flutter build appbundle
 
     - name: Upload APK
