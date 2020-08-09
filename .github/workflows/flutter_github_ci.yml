@@ -66,15 +66,19 @@ jobs:
       with:
         channel: 'dev'
     - run: flutter pub get
-    #- run: flutter build apk --target-platform android-arm, android-arm64 --split-per-abi
-    # - run: flutter build appbundle --target-platform android-arm, android-arm
-    #- run: flutter build appbundle
+
+    # Build Artifacts
     - run: flutter build apk
+    - run: flutter build apk --split-per-abi
+    - run: flutter build appbundle
+
     - name: Upload APK
       uses: actions/upload-artifact@master
       with: 
         name: apk-build
-        path: build/app/outputs/apk/release
+        path: |
+          build/app/outputs/apk/release
+          build/app/outputs/bundle/release
 
   deploy_web:
     name: Deploy Web to Firebase Hosting
