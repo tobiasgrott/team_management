@@ -33,6 +33,12 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
+    
+    - name: Provide Firebase Android
+      env:
+        FIREBASE_CONFIG: ${{ secrets.GOOGLE_SERVICES_PLIST }}
+      run: echo $FIREBASE_CONFIG > ./ios/GoogleService-info.plist
+
     - uses: actions/setup-java@v1
       with: 
         java-version: '12.x'
@@ -60,6 +66,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    
+    - name: Provide Firebase Android
+      env:
+        FIREBASE_CONFIG: ${{ secrets.GOOGLE_SERVICES_JSON }}
+      run: echo $FIREBASE_CONFIG > ./android/app/google-services.json
+
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
