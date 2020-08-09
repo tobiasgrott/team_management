@@ -63,7 +63,7 @@ jobs:
     #- run: flutter build apk --target-platform android-arm, android-arm64 --split-per-abi
     # - run: flutter build appbundle --target-platform android-arm, android-arm
     #- run: flutter build appbundle
-    - run: flutter build apk --split-per-abi
+    - run: flutter build apk
     - name: Upload APK
       uses: actions/upload-artifact@master
       with: 
