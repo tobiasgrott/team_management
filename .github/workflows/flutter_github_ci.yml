@@ -101,26 +101,26 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           PROJECT_ID: default
   
-  #   deploy_ios:
-  #     name: Deploy iOS Beta
-  #     needs: [build_ios]
-  #     runs-on: macOS-latest
-  #     steps:
-  #       - uses: actions/checkout@v1
-  #       - uses: subosito/flutter-action@v1
-  #         with:
-  #           channel: 'dev'
-  #       - run:  mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-  #       - uses: webfactory/ssh-agent@v0.1.1
-  #         with:
-  #           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-  #       - uses: maierj/fastlane-action@v0.9.5
-  #         with:
-  #           lane: 'beta'
-  #           subdirectory: 'ios'
-  #         env:
-  #           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+  deploy_ios:
+    name: Deploy iOS Beta
+    needs: [build_ios]
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+      - run:  mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - uses: webfactory/ssh-agent@v0.1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - uses: maierj/fastlane-action@v0.9.5
+        with:
+          lane: 'beta'
+          subdirectory: 'ios'
+        env:
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
   
   #   deploy_apk:
   #     name: Deploy Android Beta
