@@ -81,7 +81,7 @@ jobs:
     - run: flutter pub get
 
     # Build Artifacts
-    - run: echo $PLAYSTORE_SIGNING_KEY | base64 -d > android/app/key.jks
+    - run: echo $SIGNING_KEY | base64 -d > android/app/key.jks
       env:
         SIGNING_KEY: $ {{ secrets.SIGNING_KEY }}
     - run: flutter build apk
