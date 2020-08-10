@@ -55,7 +55,7 @@ android {
             def keystorePropertiesFile = rootProject.file('key.properties')
             if (keystorePropertiesFile.exists()){
                 signingConfig signingConfig.debug
-                #keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+                //keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
             } else {
                 keystoreProperties.setProperty('storePassword', System.getEnv('PLAYSTORE_KEY_STORE_PASSWORD'))
                 keystoreProperties.setProperty('keyPassword', System.getEnv('PLAYSTORE_KEY_PASSWORD'))
