@@ -61,6 +61,7 @@ android {
                 keystoreProperties.setProperty('keyPassword', System.getenv('KEY_PASSWORD'))
                 keystoreProperties.setProperty('keyAlias', System.getenv('ALIAS'))
                 keystoreProperties.setProperty('storeFile', System.getenv('KEY_PATH'))
+                signingConfig keystoreProperties
             }
         }
     }
