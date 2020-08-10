@@ -33,7 +33,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
-    
+
     - name: Provide Firebase Android
       env:
         FIREBASE_CONFIG: ${{ secrets.GOOGLE_SERVICES_PLIST }}
@@ -81,7 +81,17 @@ jobs:
     - run: flutter pub get
 
     # Build Artifacts
+    - run: echo $PLAYSTORE_SIGNING_KEY | base64 -d > android/app/key.jks
+      env:
+        SIGNING_KEY: $ {{ secrets.PLAYSTORE_SIGNING_KEY }}
     - run: flutter build apk
+    # Signing Information
+      env:
+        KEY_STORE_PASSWORD: ${{ secrets.PLAYSTORE_KEY_STORE_PASSWORD }}
+        KEY_PASSWORD: ${{ secrets.PLAYSTORE_KEY_PASSWORD }}
+        ALIAS: ${{ secrets.PLAYSTORE_ALIAS }}
+        KEY_PATH: key.jks
+
     #- run: flutter build apk --split-per-abi
     - run: flutter build appbundle
 

@@ -46,3 +46,5 @@ app.*.map.json
 # Security
 google-services.json
 GoogleService-Info.plist
+key.properties
+key.jks
