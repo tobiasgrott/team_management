@@ -51,8 +51,17 @@ jobs:
     # Run widget tests for our flutter project.
     - run: flutter test
 
+    - run: echo $SIGNING_KEY | base64 -d > android/app/key.jks
+      env:
+        SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        
     # Build apk.
     - run: flutter build apk --split-per-abi
+      env:
+        KEY_STORE_PASSWORD: ${{ secrets.PLAYSTORE_KEY_STORE_PASSWORD }}
+        KEY_PASSWORD: ${{ secrets.PLAYSTORE_KEY_PASSWORD }}
+        ALIAS: ${{ secrets.PLAYSTORE_ALIAS }}
+        KEY_PATH: key.jks
     
     # Build ios
     # needs runs-on: macos-latest

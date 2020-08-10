@@ -57,10 +57,10 @@ android {
                 signingConfig signingConfig.debug
                 //keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
             } else {
-                keystoreProperties.setProperty('storePassword', System.getenv('PLAYSTORE_KEY_STORE_PASSWORD'))
-                keystoreProperties.setProperty('keyPassword', System.getenv('PLAYSTORE_KEY_PASSWORD'))
-                keystoreProperties.setProperty('keyAlias', System.getenv('PLAYSTORE_ALIAS'))
-                keystoreProperties.setProperty('storeFile', System.getenv('PLAYSTORE_KEY_PATH'))
+                keystoreProperties.setProperty('storePassword', System.getenv('KEY_STORE_PASSWORD'))
+                keystoreProperties.setProperty('keyPassword', System.getenv('KEY_PASSWORD'))
+                keystoreProperties.setProperty('keyAlias', System.getenv('ALIAS'))
+                keystoreProperties.setProperty('storeFile', System.getenv('KEY_PATH'))
             }
         }
     }
