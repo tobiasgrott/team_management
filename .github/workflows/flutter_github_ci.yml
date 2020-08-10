@@ -94,6 +94,11 @@ jobs:
 
     #- run: flutter build apk --split-per-abi
     - run: flutter build appbundle
+      env:
+        KEY_STORE_PASSWORD: ${{ secrets.PLAYSTORE_KEY_STORE_PASSWORD }}
+        KEY_PASSWORD: ${{ secrets.PLAYSTORE_KEY_PASSWORD }}
+        ALIAS: ${{ secrets.PLAYSTORE_ALIAS }}
+        KEY_PATH: key.jks
 
     - name: Upload APK
       uses: actions/upload-artifact@master
